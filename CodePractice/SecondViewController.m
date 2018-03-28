@@ -145,6 +145,7 @@
     
     if (decisionHandler) {
         decisionHandler(WKNavigationActionPolicyAllow);
+        
     }
 }
 
