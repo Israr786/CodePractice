@@ -8,6 +8,7 @@
 
 #import "SecondViewController.h"
 #import <AVFoundation/AVFoundation.h>
+#import "SongListTableViewController.h"
 
 @interface SecondViewController (){
     
@@ -65,7 +66,7 @@
     NSLog(@"didFailNavigation: %@, error %@", navigation, error);
    NSLog(@"URL %@",error.userInfo[NSErrorFailingURLStringKey]);
     
-    [self dismissViewControllerAnimated:YES completion:nil];
+ //   [self dismissViewControllerAnimated:YES completion:nil];
     
     
     //1
@@ -89,6 +90,8 @@
                                                       
                                                        // get the file from directory
                                                        NSArray *pathArray = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask,YES);
+                                                       
+                                                       
                                                        NSString *documentsDirectory = [pathArray objectAtIndex:0];
                                                        NSString *soundPath = [documentsDirectory stringByAppendingPathComponent:@"sound.mp3"];
                                             
@@ -99,6 +102,7 @@
                                                        {
                                                            soundUrl = [NSURL fileURLWithPath:soundPath isDirectory:NO];
                                                        }
+                                                       
                                                        
                                                        // plau audio file
                                                        AVAudioSession *session = [AVAudioSession sharedInstance];
@@ -114,6 +118,16 @@
     // 4
     [downloadPhotoTask resume];
     
+    
+    // list contents of Documents Directory just to check
+    NSURL *documentsURL = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+    
+    NSArray *contents = [[NSFileManager defaultManager]contentsOfDirectoryAtURL:documentsURL includingPropertiesForKeys:nil options:NSDirectoryEnumerationSkipsHiddenFiles error:nil];
+    
+    SongListTableViewController *songListVC = [[SongListTableViewController alloc]initWithNibName:@"SongListTableViewController" bundle:nil];
+    
+
+    [self presentViewController:songListVC animated:YES completion:nil];
     
 }
 

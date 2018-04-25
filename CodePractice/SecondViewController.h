@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <WebKit/WebKit.h>
 
-@interface SecondViewController : UIViewController<WKUIDelegate,WKNavigationDelegate>
+@interface SecondViewController : UINavigationController<WKUIDelegate,WKNavigationDelegate>
 
 @property (nonatomic,strong) IBOutlet WKWebView *downloadwebView;
 

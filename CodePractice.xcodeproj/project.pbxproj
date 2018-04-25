@@ -18,6 +18,10 @@
 		1800A38B206B799D000BFAA7 /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1800A389206B799D000BFAA7 /* SecondViewController.m */; };
 		1800A38C206B799D000BFAA7 /* SecondViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1800A38A206B799D000BFAA7 /* SecondViewController.xib */; };
 		1800A38F206B90D1000BFAA7 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1800A38E206B90D0000BFAA7 /* AVFoundation.framework */; };
+		1800A393206C5755000BFAA7 /* SongListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1800A391206C5755000BFAA7 /* SongListTableViewController.m */; };
+		1800A394206C5755000BFAA7 /* SongListTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1800A392206C5755000BFAA7 /* SongListTableViewController.xib */; };
+		1800A398206C580A000BFAA7 /* SongTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1800A396206C580A000BFAA7 /* SongTableViewCell.m */; };
+		1800A399206C580A000BFAA7 /* SongTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1800A397206C580A000BFAA7 /* SongTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +62,12 @@
 		1800A389206B799D000BFAA7 /* SecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
 		1800A38A206B799D000BFAA7 /* SecondViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SecondViewController.xib; sourceTree = "<group>"; };
 		1800A38E206B90D0000BFAA7 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		1800A390206C5755000BFAA7 /* SongListTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SongListTableViewController.h; sourceTree = "<group>"; };
+		1800A391206C5755000BFAA7 /* SongListTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SongListTableViewController.m; sourceTree = "<group>"; };
+		1800A392206C5755000BFAA7 /* SongListTableViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SongListTableViewController.xib; sourceTree = "<group>"; };
+		1800A395206C580A000BFAA7 /* SongTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SongTableViewCell.h; sourceTree = "<group>"; };
+		1800A396206C580A000BFAA7 /* SongTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SongTableViewCell.m; sourceTree = "<group>"; };
+		1800A397206C580A000BFAA7 /* SongTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SongTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +132,12 @@
 				1800A388206B799D000BFAA7 /* SecondViewController.h */,
 				1800A389206B799D000BFAA7 /* SecondViewController.m */,
 				1800A38A206B799D000BFAA7 /* SecondViewController.xib */,
+				1800A390206C5755000BFAA7 /* SongListTableViewController.h */,
+				1800A391206C5755000BFAA7 /* SongListTableViewController.m */,
+				1800A392206C5755000BFAA7 /* SongListTableViewController.xib */,
+				1800A395206C580A000BFAA7 /* SongTableViewCell.h */,
+				1800A396206C580A000BFAA7 /* SongTableViewCell.m */,
+				1800A397206C580A000BFAA7 /* SongTableViewCell.xib */,
 			);
 			path = CodePractice;
 			sourceTree = "<group>";
@@ -259,7 +275,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1800A399206C580A000BFAA7 /* SongTableViewCell.xib in Resources */,
 				1800A38C206B799D000BFAA7 /* SecondViewController.xib in Resources */,
+				1800A394206C5755000BFAA7 /* SongListTableViewController.xib in Resources */,
 				1800A35E2069A23C000BFAA7 /* LaunchScreen.storyboard in Resources */,
 				1800A35B2069A23C000BFAA7 /* Assets.xcassets in Resources */,
 				1800A3592069A23C000BFAA7 /* Main.storyboard in Resources */,
@@ -289,8 +307,10 @@
 			files = (
 				1800A38B206B799D000BFAA7 /* SecondViewController.m in Sources */,
 				1800A3562069A23C000BFAA7 /* ViewController.m in Sources */,
+				1800A398206C580A000BFAA7 /* SongTableViewCell.m in Sources */,
 				1800A3612069A23C000BFAA7 /* main.m in Sources */,
 				1800A3532069A23C000BFAA7 /* AppDelegate.m in Sources */,
+				1800A393206C5755000BFAA7 /* SongListTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
