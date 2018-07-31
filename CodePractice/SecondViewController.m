@@ -33,6 +33,8 @@
     [self.view addSubview:_downloadwebView];
    // [self.view addSubview:_downloadButton];
     
+    NSLog(@"Git practise");
+    
 
 }
 
@@ -113,6 +115,8 @@
                                                    
     // 4
     [downloadPhotoTask resume];
+    
+    
     
     
 }
