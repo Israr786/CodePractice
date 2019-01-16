@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface SongListTableViewController : UITableViewController<UITableViewDelegate,UITableViewDataSource>
+@property(nonatomic,strong) IBOutlet UITableView *tableview;
+
 
 @end

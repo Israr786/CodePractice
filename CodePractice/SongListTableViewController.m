@@ -8,10 +8,13 @@
 
 #import "SongListTableViewController.h"
 #import "SongTableViewCell.h"
+#import "SecondViewController.h"
+#import "PlayerViewController.h"
 
 @interface SongListTableViewController (){
     NSArray *contents;
     NSURL *documentsURL;
+    SecondViewController *SecondVC;
 }
 
 @end
@@ -27,13 +30,17 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
-    documentsURL = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory
+   documentsURL = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory
                                                                   inDomains:NSUserDomainMask] lastObject];
    contents = [[NSFileManager defaultManager]contentsOfDirectoryAtURL:documentsURL
                                                      includingPropertiesForKeys:nil options:NSDirectoryEnumerationSkipsHiddenFiles error:nil];
-    
-    
+   self.navigationItem.title = @"Song List";
+   self.tableView.dataSource = self;
+   self.tableView.delegate = self;
+[self.tableView registerNib:[UINib nibWithNibName:@"SongTableViewCell" bundle:nil]  forCellReuseIdentifier:@"SongCell"];
+
 }
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -43,26 +50,26 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    
     return [contents count];
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
  
-    SongTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SongCell" forIndexPath:indexPath];
-    cell.songNameLabel.text= [NSString stringWithFormat:@"%@",contents[indexPath.row]];
-    
-   
-    
+    SongTableViewCell *cell =(SongTableViewCell *) [tableView dequeueReusableCellWithIdentifier:@"SongCell" forIndexPath:indexPath];
+    cell.songNameLabel.text= [NSString stringWithFormat:@"%i",indexPath.row];
+    NSLog(@"%@",SecondVC.songsPath[indexPath.row]);
     return cell;
+    
+    
 }
-
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 60.0;
+}
 
 /*
 // Override to support conditional editing of the table view.
@@ -98,21 +105,21 @@
 }
 */
 
-/*
+
 #pragma mark - Table view delegate
 
 // In a xib-based application, navigation from a table can be handled in -tableView:didSelectRowAtIndexPath:
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     // Navigation logic may go here, for example:
     // Create the next view controller.
-    <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:<#@"Nib name"#> bundle:nil];
+    PlayerViewController *playerVC = [[PlayerViewController alloc]initWithNibName:@"PlayerViewController" bundle:nil];
     
     // Pass the selected object to the new view controller.
     
     // Push the view controller.
-    [self.navigationController pushViewController:detailViewController animated:YES];
+    [self.navigationController pushViewController:playerVC animated:YES];
 }
-*/
+
 
 /*
 #pragma mark - Navigation

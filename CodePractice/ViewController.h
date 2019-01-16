@@ -12,9 +12,13 @@
 
 @interface ViewController : UIViewController<WKNavigationDelegate,WKUIDelegate>
 @property (nonatomic,strong) IBOutlet WKWebView *webView;
-@property (nonatomic,strong) IBOutlet UIButton *downloadButton;
+@property (nonatomic,strong) IBOutlet UIBarButtonItem *downloadButton;
+@property (nonatomic,strong) IBOutlet UIBarButtonItem *refreshButton;
+
 
 -(IBAction)downloadSong:(id)sender;
+-(IBAction)refreshPage:(id)sender;
+-(IBAction)songListVC:(id)sender;
 
 
 @end

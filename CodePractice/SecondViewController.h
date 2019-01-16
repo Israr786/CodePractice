@@ -9,7 +9,10 @@
 #import <UIKit/UIKit.h>
 #import <WebKit/WebKit.h>
 
-@interface SecondViewController : UINavigationController<WKUIDelegate,WKNavigationDelegate>
+@interface SecondViewController : UIViewController<WKUIDelegate,WKNavigationDelegate>
+
+@property (nonatomic,assign) NSDictionary *songListWithPath;
+@property (nonatomic,assign) NSMutableArray *songsPath;
 
 @property (nonatomic,strong) IBOutlet WKWebView *downloadwebView;
 

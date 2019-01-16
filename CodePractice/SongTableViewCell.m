@@ -8,7 +8,10 @@
 
 #import "SongTableViewCell.h"
 
+
+
 @implementation SongTableViewCell
+
 
 - (void)awakeFromNib {
     [super awakeFromNib];
@@ -19,6 +22,11 @@
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
+}
+
+-(IBAction)playSong:(id)sender {
+    
+  
 }
 
 @end

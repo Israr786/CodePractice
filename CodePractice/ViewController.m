@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "SecondViewController.h"
+#import "SongListTableViewController.h"
 @interface ViewController ()
 
 
@@ -29,32 +30,43 @@
     NSURLRequest *nsrequest=[NSURLRequest requestWithURL:nsurl];
     [_webView loadRequest:nsrequest];
     [self.view addSubview:_webView];
-    [self.view addSubview:_downloadButton];
-  //  [self.navigationController initWithRootViewController:
-  
 }
 
 -(IBAction)downloadSong:(id)sender{
     
    
     SecondViewController *secondVC = [[SecondViewController alloc]init];
- //   [self.navigationController pushViewController:secondVC animated:YES];
-    
-    [self presentViewController:secondVC animated:YES completion:nil];
+   [self.navigationController pushViewController:secondVC animated:YES];
+//   [self presentViewController:secondVC animated:YES completion:nil];
     
 
 }
 
+-(IBAction)refreshPage:(id)sender {
+    [self viewDidLoad];
+}
 
 
 // our two sum function which will return
 // all pairs in the array that sum up to S
+
+-(IBAction)songListVC:(id)sender {
+    SongListTableViewController *songListVC = [[SongListTableViewController alloc]initWithNibName:@"SongListTableViewController" bundle:nil];
+    [self.navigationController pushViewController:songListVC animated:YES];
+    
+    
+  //  [self presentViewController:songListVC animated:YES completion:nil];
+  
+    
+}
+
 
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 
 
 @end

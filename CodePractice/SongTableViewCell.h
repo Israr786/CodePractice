@@ -7,10 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <AVFoundation/AVFoundation.h>
 
 @interface SongTableViewCell : UITableViewCell
 @property(nonatomic,weak) IBOutlet UILabel *songNameLabel;
 @property(nonatomic,weak) IBOutlet UIButton *playButton;
+@property (nonatomic,strong)AVAudioPlayer *player;
+
+-(IBAction)playSong:(id)sender;
 
 
 

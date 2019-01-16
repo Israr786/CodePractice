@@ -22,6 +22,8 @@
 		1800A394206C5755000BFAA7 /* SongListTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1800A392206C5755000BFAA7 /* SongListTableViewController.xib */; };
 		1800A398206C580A000BFAA7 /* SongTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1800A396206C580A000BFAA7 /* SongTableViewCell.m */; };
 		1800A399206C580A000BFAA7 /* SongTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1800A397206C580A000BFAA7 /* SongTableViewCell.xib */; };
+		1881E45921EF61620081084E /* PlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1881E45721EF61620081084E /* PlayerViewController.m */; };
+		1881E45A21EF61620081084E /* PlayerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1881E45821EF61620081084E /* PlayerViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +70,9 @@
 		1800A395206C580A000BFAA7 /* SongTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SongTableViewCell.h; sourceTree = "<group>"; };
 		1800A396206C580A000BFAA7 /* SongTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SongTableViewCell.m; sourceTree = "<group>"; };
 		1800A397206C580A000BFAA7 /* SongTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SongTableViewCell.xib; sourceTree = "<group>"; };
+		1881E45621EF61620081084E /* PlayerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlayerViewController.h; sourceTree = "<group>"; };
+		1881E45721EF61620081084E /* PlayerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlayerViewController.m; sourceTree = "<group>"; };
+		1881E45821EF61620081084E /* PlayerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlayerViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,6 +143,9 @@
 				1800A395206C580A000BFAA7 /* SongTableViewCell.h */,
 				1800A396206C580A000BFAA7 /* SongTableViewCell.m */,
 				1800A397206C580A000BFAA7 /* SongTableViewCell.xib */,
+				1881E45621EF61620081084E /* PlayerViewController.h */,
+				1881E45721EF61620081084E /* PlayerViewController.m */,
+				1881E45821EF61620081084E /* PlayerViewController.xib */,
 			);
 			path = CodePractice;
 			sourceTree = "<group>";
@@ -276,6 +284,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1800A399206C580A000BFAA7 /* SongTableViewCell.xib in Resources */,
+				1881E45A21EF61620081084E /* PlayerViewController.xib in Resources */,
 				1800A38C206B799D000BFAA7 /* SecondViewController.xib in Resources */,
 				1800A394206C5755000BFAA7 /* SongListTableViewController.xib in Resources */,
 				1800A35E2069A23C000BFAA7 /* LaunchScreen.storyboard in Resources */,
@@ -305,6 +314,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1881E45921EF61620081084E /* PlayerViewController.m in Sources */,
 				1800A38B206B799D000BFAA7 /* SecondViewController.m in Sources */,
 				1800A3562069A23C000BFAA7 /* ViewController.m in Sources */,
 				1800A398206C580A000BFAA7 /* SongTableViewCell.m in Sources */,
