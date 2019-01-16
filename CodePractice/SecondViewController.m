@@ -102,7 +102,7 @@ static int g_count=1 ;
                                                        
                                                        
                                                        NSString *documentsDirectory = [pathArray objectAtIndex:0];
-                                                       NSString *soundPath = [documentsDirectory stringByAppendingPathComponent:@"sound.mp3"];
+                                                       NSString *soundPath = [documentsDirectory stringByAppendingPathComponent:@"1.mp3"];
                                             
                                                        
                                                        
@@ -111,6 +111,21 @@ static int g_count=1 ;
                                                        {
                                                            soundUrl = [NSURL fileURLWithPath:soundPath isDirectory:NO];
                                                        }
+                                                       
+    
+                                                       
+                                                       if ([[NSFileManager defaultManager] fileExistsAtPath:soundPath])
+                                                       {
+                                                           NSURL *soundURL = [NSURL fileURLWithPath:soundPath isDirectory:NO];
+                                                       }
+
+                                                       
+                                                       
+                                                       
+                                                       
+                                                       
+                                                       
+                                                       
                                                        
                                                        NSLog(@"%@ sound url",soundUrl);
                                                        // plau audio file

@@ -18,25 +18,58 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    NSArray *contents;
-    NSURL *documentsURL;
+//    NSArray *contents;
+//    NSURL *documentsURL;
+//
+//
+//    documentsURL = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory
+//                                                           inDomains:NSUserDomainMask] lastObject];
+//    contents = [[NSFileManager defaultManager]contentsOfDirectoryAtURL:documentsURL
+//                                            includingPropertiesForKeys:nil options:NSDirectoryEnumerationSkipsHiddenFiles error:nil];
+//
+//    NSURL *songURLString = [contents objectAtIndex:0];
+//
+//    NSError *error;
+//
+//    NSData *mp3data = [NSData dataWithContentsOfURL:songURLString];
+//    _player = [[AVAudioPlayer alloc] initWithContentsOfURL:songURLString error:nil];
+//    _player.numberOfLoops = -1; //infinite
+//    [_player play];
+//
+//    NSLog(@"%@",songURLString);
+    
+    // get the file from directory
+    NSArray *pathArray = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask,YES);
     
     
-    documentsURL = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory
-                                                           inDomains:NSUserDomainMask] lastObject];
-    contents = [[NSFileManager defaultManager]contentsOfDirectoryAtURL:documentsURL
-                                            includingPropertiesForKeys:nil options:NSDirectoryEnumerationSkipsHiddenFiles error:nil];
+    NSString *documentsDirectory = [pathArray objectAtIndex:0];
+    NSString *soundPath = [documentsDirectory stringByAppendingPathComponent:@"1.mp3"];
     
-    NSURL *songURLString = [contents objectAtIndex:0];
     
-    NSError *error;
-   
-    NSData *mp3data = [NSData dataWithContentsOfURL:songURLString];
-    _player = [[AVAudioPlayer alloc] initWithContentsOfURL:songURLString error:nil];
-    _player.numberOfLoops = -1; //infinite
+    
+    NSURL *soundUrl;
+    if ([[NSFileManager defaultManager] fileExistsAtPath:soundPath])
+    {
+        soundUrl = [NSURL fileURLWithPath:soundPath isDirectory:NO];
+    }
+    
+    
+    
+    if ([[NSFileManager defaultManager] fileExistsAtPath:soundPath])
+    {
+        NSURL *soundURL = [NSURL fileURLWithPath:soundPath isDirectory:NO];
+    }
+    
+    
+    
+    NSLog(@"%@ sound url",soundUrl);
+    // plau audio file
+    AVAudioSession *session = [AVAudioSession sharedInstance];
+    [session setCategory:AVAudioSessionCategoryPlayback error:nil];
+    _player = [[AVAudioPlayer alloc]initWithContentsOfURL:soundUrl error:nil];
+    [_player prepareToPlay];
     [_player play];
-
-    NSLog(@"%@",songURLString);
+    [_player setVolume:5.0];
     
 }
 
