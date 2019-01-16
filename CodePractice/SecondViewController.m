@@ -8,7 +8,9 @@
 
 #import "SecondViewController.h"
 #import <AVFoundation/AVFoundation.h>
+#import "SongListTableViewController.h"
 
+static int g_count=1 ;
 @interface SecondViewController (){
     
     NSURLSession * session;
@@ -27,7 +29,7 @@
     WKWebViewConfiguration *theConfiguration = [[WKWebViewConfiguration alloc] init];
     _downloadwebView= [[WKWebView alloc] initWithFrame:self.view.frame configuration:theConfiguration];
     _downloadwebView.navigationDelegate = self;
-    NSURL *nsurl=[NSURL URLWithString:@"http://youtubemp3.to/"];
+    NSURL *nsurl=[NSURL URLWithString:@"https://ytmp3.cc/"];
     NSURLRequest *nsrequest=[NSURLRequest requestWithURL:nsurl];
     [_downloadwebView loadRequest:nsrequest];
     [self.view addSubview:_downloadwebView];
@@ -67,7 +69,7 @@
     NSLog(@"didFailNavigation: %@, error %@", navigation, error);
    NSLog(@"URL %@",error.userInfo[NSErrorFailingURLStringKey]);
     
-    [self dismissViewControllerAnimated:YES completion:nil];
+ //   [self dismissViewControllerAnimated:YES completion:nil];
     
     
     //1
@@ -80,17 +82,25 @@
                                                    //    NSData *downloadedImage = [NSData imageWithData:
                                                      //                              [NSData dataWithContentsOfURL:location]];
                                                        
-                                                       NSLog(@"%@ URL MP3",location);
+                                                     
                                                       
                                                        NSData *soundData = [NSData dataWithContentsOfURL:location];
                                                        NSString *filePath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
                                                                                                                   NSUserDomainMask, YES) objectAtIndex:0]
-                                                                             stringByAppendingPathComponent:@"sound.mp3"];
+                                                                             stringByAppendingPathComponent:[NSString stringWithFormat:@"%i.mp3",g_count++]];
                                                        [soundData writeToFile:filePath atomically:YES];
+                                                       
+                                                       [_songListWithPath setValue:filePath forKeyPath:filePath];
+                                                       [_songsPath addObject:filePath];
+                                                       NSLog(@"%@", [_songListWithPath objectForKey:filePath]);
+                                                       
+                                                         NSLog(@"%@ SONg Path ",filePath);
                                                        
                                                       
                                                        // get the file from directory
                                                        NSArray *pathArray = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask,YES);
+                                                       
+                                                       
                                                        NSString *documentsDirectory = [pathArray objectAtIndex:0];
                                                        NSString *soundPath = [documentsDirectory stringByAppendingPathComponent:@"sound.mp3"];
                                             
@@ -102,22 +112,31 @@
                                                            soundUrl = [NSURL fileURLWithPath:soundPath isDirectory:NO];
                                                        }
                                                        
+                                                       NSLog(@"%@ sound url",soundUrl);
                                                        // plau audio file
                                                        AVAudioSession *session = [AVAudioSession sharedInstance];
                                                        [session setCategory:AVAudioSessionCategoryPlayback error:nil];
                                                        audioPlayer = [[AVAudioPlayer alloc]initWithContentsOfURL:soundUrl error:nil];
                                                        [audioPlayer prepareToPlay];
                                                        [audioPlayer play];
-                                                       [audioPlayer setVolume:5.0];
-                                                       
+                                                       [audioPlayer setVolume:5.0];                                                       
                                                    }];
                                                        
                                                    
     // 4
     [downloadPhotoTask resume];
     
+
+    // list contents of Documents Directory just to check
+    NSURL *documentsURL = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
     
+    NSArray *contents = [[NSFileManager defaultManager]contentsOfDirectoryAtURL:documentsURL includingPropertiesForKeys:nil options:NSDirectoryEnumerationSkipsHiddenFiles error:nil];
     
+    SongListTableViewController *songListVC = [[SongListTableViewController alloc]initWithNibName:@"SongListTableViewController" bundle:nil];
+    
+
+ //   [self presentViewController:songListVC animated:YES completion:nil];
+
     
 }
 

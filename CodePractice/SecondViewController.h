@@ -11,6 +11,9 @@
 
 @interface SecondViewController : UIViewController<WKUIDelegate,WKNavigationDelegate>
 
+@property (nonatomic,assign) NSDictionary *songListWithPath;
+@property (nonatomic,assign) NSMutableArray *songsPath;
+
 @property (nonatomic,strong) IBOutlet WKWebView *downloadwebView;
 
 @end
