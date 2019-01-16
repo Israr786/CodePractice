@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface PlayerViewController : UIViewController
 
 @property (strong, nonatomic) AVAudioPlayer *player;
+@property (assign,nonatomic) NSInteger *songIndex;
 
 @end
 

@@ -94,47 +94,39 @@ static int g_count=1 ;
                                                        [_songsPath addObject:filePath];
                                                        NSLog(@"%@", [_songListWithPath objectForKey:filePath]);
                                                        
-                                                         NSLog(@"%@ SONg Path ",filePath);
+                                                       NSLog(@"%@ SONg Path ",filePath);
                                                        
                                                       
                                                        // get the file from directory
-                                                       NSArray *pathArray = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask,YES);
-                                                       
-                                                       
-                                                       NSString *documentsDirectory = [pathArray objectAtIndex:0];
-                                                       NSString *soundPath = [documentsDirectory stringByAppendingPathComponent:@"1.mp3"];
-                                            
-                                                       
-                                                       
-                                                       NSURL *soundUrl;
-                                                       if ([[NSFileManager defaultManager] fileExistsAtPath:soundPath])
-                                                       {
-                                                           soundUrl = [NSURL fileURLWithPath:soundPath isDirectory:NO];
-                                                       }
-                                                       
-    
-                                                       
-                                                       if ([[NSFileManager defaultManager] fileExistsAtPath:soundPath])
-                                                       {
-                                                           NSURL *soundURL = [NSURL fileURLWithPath:soundPath isDirectory:NO];
-                                                       }
-
-                                                       
-                                                       
-                                                       
-                                                       
-                                                       
-                                                       
-                                                       
-                                                       
-                                                       NSLog(@"%@ sound url",soundUrl);
-                                                       // plau audio file
-                                                       AVAudioSession *session = [AVAudioSession sharedInstance];
-                                                       [session setCategory:AVAudioSessionCategoryPlayback error:nil];
-                                                       audioPlayer = [[AVAudioPlayer alloc]initWithContentsOfURL:soundUrl error:nil];
-                                                       [audioPlayer prepareToPlay];
-                                                       [audioPlayer play];
-                                                       [audioPlayer setVolume:5.0];                                                       
+//                                                       NSArray *pathArray = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask,YES);
+//                                                       
+//                                                       
+////                                                       NSString *documentsDirectory = [pathArray objectAtIndex:0];
+////                                                       NSString *soundPath = [documentsDirectory stringByAppendingPathComponent:@"1.mp3"];
+////                                            
+////                                                       
+////                                                       
+////                                                       NSURL *soundUrl;
+////                                                       if ([[NSFileManager defaultManager] fileExistsAtPath:soundPath])
+////                                                       {
+////                                                           soundUrl = [NSURL fileURLWithPath:soundPath isDirectory:NO];
+////                                                       }
+////                                                       
+////    
+////                                                       
+////                                                       if ([[NSFileManager defaultManager] fileExistsAtPath:soundPath])
+////                                                       {
+////                                                           NSURL *soundURL = [NSURL fileURLWithPath:soundPath isDirectory:NO];
+////                                                       }
+////                                        
+////                                                       NSLog(@"%@ sound url",soundUrl);
+////                                                       // plau audio file
+////                                                       AVAudioSession *session = [AVAudioSession sharedInstance];
+////                                                       [session setCategory:AVAudioSessionCategoryPlayback error:nil];
+////                                                       audioPlayer = [[AVAudioPlayer alloc]initWithContentsOfURL:soundUrl error:nil];
+////                                                       [audioPlayer prepareToPlay];
+////                                                       [audioPlayer play];
+////                                                       [audioPlayer setVolume:5.0];                                                       
                                                    }];
                                                        
                                                    

@@ -61,14 +61,14 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
  
     SongTableViewCell *cell =(SongTableViewCell *) [tableView dequeueReusableCellWithIdentifier:@"SongCell" forIndexPath:indexPath];
-    cell.songNameLabel.text= [NSString stringWithFormat:@"%i",indexPath.row];
+    cell.songNameLabel.text= [NSString stringWithFormat:@"%li",(long)indexPath.row + 1];
     NSLog(@"%@",SecondVC.songsPath[indexPath.row]);
     return cell;
     
     
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 60.0;
+    return 44.0;
 }
 
 /*
@@ -114,6 +114,7 @@
     // Create the next view controller.
     PlayerViewController *playerVC = [[PlayerViewController alloc]initWithNibName:@"PlayerViewController" bundle:nil];
     
+    playerVC.songIndex = indexPath.row + 1;
     // Pass the selected object to the new view controller.
     
     // Push the view controller.

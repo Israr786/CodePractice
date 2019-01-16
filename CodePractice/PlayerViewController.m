@@ -43,21 +43,12 @@
     
     
     NSString *documentsDirectory = [pathArray objectAtIndex:0];
-    NSString *soundPath = [documentsDirectory stringByAppendingPathComponent:@"1.mp3"];
-    
-    
+    NSString *soundPath = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%li.mp3",_songIndex]];
     
     NSURL *soundUrl;
     if ([[NSFileManager defaultManager] fileExistsAtPath:soundPath])
     {
         soundUrl = [NSURL fileURLWithPath:soundPath isDirectory:NO];
-    }
-    
-    
-    
-    if ([[NSFileManager defaultManager] fileExistsAtPath:soundPath])
-    {
-        NSURL *soundURL = [NSURL fileURLWithPath:soundPath isDirectory:NO];
     }
     
     
