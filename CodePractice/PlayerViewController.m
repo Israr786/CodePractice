@@ -17,51 +17,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    
-//    NSArray *contents;
-//    NSURL *documentsURL;
-//
-//
-//    documentsURL = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory
-//                                                           inDomains:NSUserDomainMask] lastObject];
-//    contents = [[NSFileManager defaultManager]contentsOfDirectoryAtURL:documentsURL
-//                                            includingPropertiesForKeys:nil options:NSDirectoryEnumerationSkipsHiddenFiles error:nil];
-//
-//    NSURL *songURLString = [contents objectAtIndex:0];
-//
-//    NSError *error;
-//
-//    NSData *mp3data = [NSData dataWithContentsOfURL:songURLString];
-//    _player = [[AVAudioPlayer alloc] initWithContentsOfURL:songURLString error:nil];
-//    _player.numberOfLoops = -1; //infinite
-//    [_player play];
-//
-//    NSLog(@"%@",songURLString);
-    
-    // get the file from directory
-    NSArray *pathArray = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask,YES);
-    
-    
-    NSString *documentsDirectory = [pathArray objectAtIndex:0];
-    NSString *soundPath = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%li.mp3",_songIndex]];
-    
-    NSURL *soundUrl;
-    if ([[NSFileManager defaultManager] fileExistsAtPath:soundPath])
-    {
-        soundUrl = [NSURL fileURLWithPath:soundPath isDirectory:NO];
-    }
-    
-    
-    
-    NSLog(@"%@ sound url",soundUrl);
-    // plau audio file
-    AVAudioSession *session = [AVAudioSession sharedInstance];
-    [session setCategory:AVAudioSessionCategoryPlayback error:nil];
-    _player = [[AVAudioPlayer alloc]initWithContentsOfURL:soundUrl error:nil];
-    [_player prepareToPlay];
-    [_player play];
-    [_player setVolume:5.0];
-    
+    [self playAudio:nil];
 }
 
 - (IBAction)slide:(id)sender  {
@@ -98,6 +54,7 @@
     
     [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateTime:) userInfo:nil repeats:YES];
     [_player play];
+   
 }
 
 -(IBAction)stopAudio:(id)sender {
@@ -105,7 +62,9 @@
 }
 
 -(IBAction)nextAudio:(id)sender {
-    [_player pause];
+    if (_player.isPlaying){
+        [_player pause];
+    }
 }
 
 

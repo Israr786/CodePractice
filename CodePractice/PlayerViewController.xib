@@ -29,7 +29,7 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <state key="normal" title="Next"/>
                     <connections>
-                        <action selector="nextAudio:" destination="-1" eventType="touchDragInside" id="mKw-RE-3Jp"/>
+                        <action selector="nextAudio:" destination="-1" eventType="touchUpInside" id="Gzq-8a-xjd"/>
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SNs-oq-049">
