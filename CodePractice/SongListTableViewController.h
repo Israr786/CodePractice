@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PlayerViewController.h"
 
 @interface SongListTableViewController : UITableViewController<UITableViewDelegate,UITableViewDataSource>
 @property(nonatomic,strong) IBOutlet UITableView *tableview;
+@property(nonatomic,strong) PlayerViewController *playerVC;
 
 
 @end

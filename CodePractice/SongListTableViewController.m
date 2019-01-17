@@ -9,12 +9,12 @@
 #import "SongListTableViewController.h"
 #import "SongTableViewCell.h"
 #import "SecondViewController.h"
-#import "PlayerViewController.h"
 
 @interface SongListTableViewController (){
     NSArray *contents;
     NSURL *documentsURL;
     SecondViewController *SecondVC;
+ //   PlayerViewController *playerVC;
 }
 
 @end
@@ -23,6 +23,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+     
+//    playerVC = [[PlayerViewController alloc]initWithNibName:@"PlayerViewController" bundle:nil];
+    
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -112,13 +115,13 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     // Navigation logic may go here, for example:
     // Create the next view controller.
-    PlayerViewController *playerVC = [[PlayerViewController alloc]initWithNibName:@"PlayerViewController" bundle:nil];
+//    _playerVC = [[PlayerViewController alloc]initWithNibName:@"PlayerViewController" bundle:nil];
     
-    playerVC.songIndex = indexPath.row + 1;
+    _playerVC.songIndex = indexPath.row + 1;
     // Pass the selected object to the new view controller.
     
     // Push the view controller.
-    [self.navigationController pushViewController:playerVC animated:YES];
+    [self.navigationController pushViewController:_playerVC animated:YES];
 }
 
 

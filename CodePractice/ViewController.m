@@ -20,7 +20,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
-   
+   //initialise player
+    _playerVCMain = [[PlayerViewController alloc] initWithNibName:@"PlayerViewController" bundle:nil];
     
     
     WKWebViewConfiguration *theConfiguration = [[WKWebViewConfiguration alloc] init];
@@ -52,6 +53,7 @@
 
 -(IBAction)songListVC:(id)sender {
     SongListTableViewController *songListVC = [[SongListTableViewController alloc]initWithNibName:@"SongListTableViewController" bundle:nil];
+    songListVC.playerVC = _playerVCMain;
     [self.navigationController pushViewController:songListVC animated:YES];
     
     

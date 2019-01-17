@@ -8,12 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import <WebKit/WebKit.h>
+#import "PlayerViewController.h"
 
 
 @interface ViewController : UIViewController<WKNavigationDelegate,WKUIDelegate>
 @property (nonatomic,strong) IBOutlet WKWebView *webView;
 @property (nonatomic,strong) IBOutlet UIBarButtonItem *downloadButton;
 @property (nonatomic,strong) IBOutlet UIBarButtonItem *refreshButton;
+@property (nonatomic,strong) PlayerViewController *playerVCMain;
 
 
 -(IBAction)downloadSong:(id)sender;
