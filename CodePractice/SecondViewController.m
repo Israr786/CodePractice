@@ -134,12 +134,12 @@ static int g_count=1 ;
     [downloadPhotoTask resume];
     
 
-    // list contents of Documents Directory just to check
-    NSURL *documentsURL = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
-    
-    NSArray *contents = [[NSFileManager defaultManager]contentsOfDirectoryAtURL:documentsURL includingPropertiesForKeys:nil options:NSDirectoryEnumerationSkipsHiddenFiles error:nil];
-    
-    SongListTableViewController *songListVC = [[SongListTableViewController alloc]initWithNibName:@"SongListTableViewController" bundle:nil];
+//    // list contents of Documents Directory just to check
+//    NSURL *documentsURL = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+//    
+//    NSArray *contents = [[NSFileManager defaultManager]contentsOfDirectoryAtURL:documentsURL includingPropertiesForKeys:nil options:NSDirectoryEnumerationSkipsHiddenFiles error:nil];
+//    
+//    SongListTableViewController *songListVC = [[SongListTableViewController alloc]initWithNibName:@"SongListTableViewController" bundle:nil];
     
 
  //   [self presentViewController:songListVC animated:YES completion:nil];

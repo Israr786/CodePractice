@@ -15,6 +15,16 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (strong, nonatomic) AVAudioPlayer *player;
 @property (assign,nonatomic) NSInteger *songIndex;
+@property (nonatomic,strong) IBOutlet UISlider *audioSlider;
+@property (nonatomic,strong) IBOutlet UIButton *audioStopButton;
+@property (nonatomic,strong) IBOutlet UIButton *audioPlayButton;
+@property (nonatomic,strong) IBOutlet UIButton *audioNextButton;
+
+-(IBAction)playAudio:(id)sender;
+-(IBAction)stopAudio:(id)sender;
+-(IBAction)nextAudio:(id)sender;
+-(IBAction)slide:(id)sender;
+
 
 @end
 
