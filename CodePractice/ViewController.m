@@ -22,6 +22,7 @@
     
    //initialise player
     _playerVCMain = [[PlayerViewController alloc] initWithNibName:@"PlayerViewController" bundle:nil];
+    self.navigationController.navigationBar.translucent = NO;
     
     
     WKWebViewConfiguration *theConfiguration = [[WKWebViewConfiguration alloc] init];
