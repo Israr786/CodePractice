@@ -23,6 +23,10 @@ static int c = 0;
     // Do any additional setup after loading the view from its nib.
  //   [self playAudio:nil];
     session = [AVAudioSession sharedInstance];
+    [session setCategory:AVAudioSessionCategoryPlayback error:nil];
+    [session setActive:YES error:nil];
+    _player.delegate = self;
+    [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
     
 }
 
@@ -53,7 +57,7 @@ static int c = 0;
     NSLog(@"%@ sound url",_songUrlPathFromVC);
     // plau audio file
    
-    [session setCategory:AVAudioSessionCategoryPlayback error:nil];
+ 
     _player = [[AVAudioPlayer alloc]initWithContentsOfURL:_songUrlPathFromVC error:nil];
     [_player prepareToPlay];
 
@@ -72,12 +76,12 @@ static int c = 0;
 
 -(IBAction)nextAudio:(id)sender {
     
-    if ([_songUrlPathArray count]>(_songIndex.row + c++))
+    if ([_songUrlPathArray count]>(_songIndex.row + c) )
     {
-        [session setCategory:AVAudioSessionCategoryPlayback error:nil];
-        _player = [[AVAudioPlayer alloc]initWithContentsOfURL:_songUrlPathArray[_songIndex.row + c++] error:nil];
+
+        _player = [[AVAudioPlayer alloc]initWithContentsOfURL:_songUrlPathArray[_songIndex.row + c] error:nil];
         [_player prepareToPlay];
-    
+        c++;
         _audioSlider.maximumValue = [_player duration];
         _audioSlider.value = 0.0;
     
@@ -91,6 +95,12 @@ static int c = 0;
     
 }
 
+- (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag {
+    if (flag == true) {
+        id sender = self;
+        [self nextAudio:sender];
+    }
+}
 
 /*
 #pragma mark - Navigation

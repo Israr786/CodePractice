@@ -62,9 +62,9 @@
     NSString *songPathUrl = [NSString stringWithFormat:@"%@",contents[indexPath.row]];
     NSLog(@"length %li",songPathUrl.length);
     //for simulator
-    NSString *songName = [songPathUrl substringFromIndex:177];
+ //   NSString *songName = [songPathUrl substringFromIndex:177];
     //for firoz device
-//    NSString *songName = [songPathUrl substringFromIndex:102];
+   NSString *songName = [songPathUrl substringFromIndex:102];
     NSString *str = [songName substringToIndex:[songName length] -4];
     NSString *Cstr = [str stringByReplacingOccurrencesOfString:@"%20" withString:@" "];
     NSLog(@"SongName %@",Cstr);
