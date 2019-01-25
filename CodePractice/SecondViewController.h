@@ -13,6 +13,7 @@
 
 @property (nonatomic,assign) NSDictionary *songListWithPath;
 @property (nonatomic,assign) NSMutableArray *songsPath;
+@property (nonatomic,assign) NSMutableArray *songNameList;
 
 @property (nonatomic,strong) IBOutlet WKWebView *downloadwebView;
 

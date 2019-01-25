@@ -14,7 +14,6 @@
     NSArray *contents;
     NSURL *documentsURL;
     SecondViewController *SecondVC;
- //   PlayerViewController *playerVC;
 }
 
 @end
@@ -23,16 +22,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-     
-//    playerVC = [[PlayerViewController alloc]initWithNibName:@"PlayerViewController" bundle:nil];
-    
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    
    documentsURL = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory
                                                                   inDomains:NSUserDomainMask] lastObject];
    contents = [[NSFileManager defaultManager]contentsOfDirectoryAtURL:documentsURL
@@ -64,8 +53,12 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
  
     SongTableViewCell *cell =(SongTableViewCell *) [tableView dequeueReusableCellWithIdentifier:@"SongCell" forIndexPath:indexPath];
-    cell.songNameLabel.text= [NSString stringWithFormat:@"%li",(long)indexPath.row + 1];
-    NSLog(@"%@",SecondVC.songsPath[indexPath.row]);
+    NSString *songPathUrl = [NSString stringWithFormat:@"%@",contents[indexPath.row]];
+    NSString *songName = [songPathUrl substringFromIndex:177];
+    NSString *str = [songName substringToIndex:[songName length] -4];
+    NSString *Cstr = [str stringByReplacingOccurrencesOfString:@"%20" withString:@" "];
+    NSLog(@"SongName %@",Cstr);
+    cell.songNameLabel.text = Cstr ;
     return cell;
     
     
@@ -113,15 +106,12 @@
 
 // In a xib-based application, navigation from a table can be handled in -tableView:didSelectRowAtIndexPath:
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Navigation logic may go here, for example:
-    // Create the next view controller.
-//    _playerVC = [[PlayerViewController alloc]initWithNibName:@"PlayerViewController" bundle:nil];
-    
-    _playerVC.songIndex = indexPath.row + 1;
-    // Pass the selected object to the new view controller.
-    
-    // Push the view controller.
+
+    _playerVC.songUrlPathFromVC = contents[indexPath.row];
+    _playerVC.songUrlPathArray = contents;
+    _playerVC.songIndex = indexPath;
     [self.navigationController pushViewController:_playerVC animated:YES];
+    
 }
 
 

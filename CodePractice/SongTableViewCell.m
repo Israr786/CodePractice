@@ -24,9 +24,6 @@
     // Configure the view for the selected state
 }
 
--(IBAction)playSong:(id)sender {
-    
-  
-}
+
 
 @end

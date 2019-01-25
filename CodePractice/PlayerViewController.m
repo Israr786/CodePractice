@@ -7,8 +7,12 @@
 //
 
 #import "PlayerViewController.h"
+static int c = 1;
 
-@interface PlayerViewController ()
+@interface PlayerViewController () {
+    AVAudioSession *session;
+    
+}
 
 @end
 
@@ -17,7 +21,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    [self playAudio:nil];
+ //   [self playAudio:nil];
+    session = [AVAudioSession sharedInstance];
+    
 }
 
 - (IBAction)slide:(id)sender  {
@@ -30,24 +36,22 @@
 
 -(IBAction)playAudio:(id)sender {
     
-    NSArray *pathArray = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask,YES);
-    NSString *documentsDirectory = [pathArray objectAtIndex:0];
-    NSString *soundPath = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%li.mp3",_songIndex]];
-    
-    NSURL *soundUrl;
-    if ([[NSFileManager defaultManager] fileExistsAtPath:soundPath])
-    {
-        soundUrl = [NSURL fileURLWithPath:soundPath isDirectory:NO];
-    }
+//    NSArray *pathArray = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask,YES);
+//    NSString *documentsDirectory = [pathArray objectAtIndex:0];
+//    NSString *soundPath = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%li.mp3",_songIndex]];
+//
+//    NSURL *soundUrl;
+//    if ([[NSFileManager defaultManager] fileExistsAtPath:soundPath])
+//    {
+//        soundUrl = [NSURL fileURLWithPath:soundPath isDirectory:NO];
+//    }
 
-    NSLog(@"%@ sound url",soundUrl);
+    NSLog(@"%@ sound url",_songUrlPathFromVC);
     // plau audio file
-    AVAudioSession *session = [AVAudioSession sharedInstance];
+   
     [session setCategory:AVAudioSessionCategoryPlayback error:nil];
-    _player = [[AVAudioPlayer alloc]initWithContentsOfURL:soundUrl error:nil];
+    _player = [[AVAudioPlayer alloc]initWithContentsOfURL:_songUrlPathFromVC error:nil];
     [_player prepareToPlay];
-//    [_player play];
-    [_player setVolume:5.0];
 
     _audioSlider.maximumValue = [_player duration];
     _audioSlider.value = 0.0;
@@ -59,12 +63,25 @@
 
 -(IBAction)stopAudio:(id)sender {
     [_player stop];
+     c = 0;
 }
 
 -(IBAction)nextAudio:(id)sender {
+  
+    
+    
     if (_player.isPlaying){
         [_player pause];
     }
+    [session setCategory:AVAudioSessionCategoryPlayback error:nil];
+    _player = [[AVAudioPlayer alloc]initWithContentsOfURL:_songUrlPathArray[_songIndex.row + c++] error:nil];
+    [_player prepareToPlay];
+    
+    _audioSlider.maximumValue = [_player duration];
+    _audioSlider.value = 0.0;
+    
+    [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateTime:) userInfo:nil repeats:YES];
+    [_player play];
 }
 
 

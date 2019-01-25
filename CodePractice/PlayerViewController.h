@@ -14,11 +14,13 @@ NS_ASSUME_NONNULL_BEGIN
 @interface PlayerViewController : UIViewController
 
 @property (strong, nonatomic) AVAudioPlayer *player;
-@property (assign,nonatomic) NSInteger *songIndex;
+@property (assign,nonatomic) NSIndexPath *songIndex;
 @property (nonatomic,strong) IBOutlet UISlider *audioSlider;
 @property (nonatomic,strong) IBOutlet UIButton *audioStopButton;
 @property (nonatomic,strong) IBOutlet UIButton *audioPlayButton;
 @property (nonatomic,strong) IBOutlet UIButton *audioNextButton;
+@property (nonatomic,strong) NSURL *songUrlPathFromVC;
+@property (nonatomic,assign) NSArray *songUrlPathArray;
 
 -(IBAction)playAudio:(id)sender;
 -(IBAction)stopAudio:(id)sender;
