@@ -7,7 +7,7 @@
 //
 
 #import "PlayerViewController.h"
-static int c = 1;
+static int c = 0;
 
 @interface PlayerViewController () {
     AVAudioSession *session;
@@ -24,6 +24,10 @@ static int c = 1;
  //   [self playAudio:nil];
     session = [AVAudioSession sharedInstance];
     
+}
+
+-(void)viewWillAppear:(BOOL)animated {
+    [self playAudio:nil];
 }
 
 - (IBAction)slide:(id)sender  {
@@ -67,21 +71,24 @@ static int c = 1;
 }
 
 -(IBAction)nextAudio:(id)sender {
-  
     
+    if ([_songUrlPathArray count]>(_songIndex.row + c++))
+    {
+        [session setCategory:AVAudioSessionCategoryPlayback error:nil];
+        _player = [[AVAudioPlayer alloc]initWithContentsOfURL:_songUrlPathArray[_songIndex.row + c++] error:nil];
+        [_player prepareToPlay];
     
-    if (_player.isPlaying){
-        [_player pause];
+        _audioSlider.maximumValue = [_player duration];
+        _audioSlider.value = 0.0;
+    
+        [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateTime:) userInfo:nil repeats:YES];
+        [_player play];
+    } else {
+        if (_player.isPlaying == true){
+            [_player stop];
+        }
     }
-    [session setCategory:AVAudioSessionCategoryPlayback error:nil];
-    _player = [[AVAudioPlayer alloc]initWithContentsOfURL:_songUrlPathArray[_songIndex.row + c++] error:nil];
-    [_player prepareToPlay];
     
-    _audioSlider.maximumValue = [_player duration];
-    _audioSlider.value = 0.0;
-    
-    [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateTime:) userInfo:nil repeats:YES];
-    [_player play];
 }
 
 
