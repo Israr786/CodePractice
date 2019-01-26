@@ -22,6 +22,9 @@
 		1800A394206C5755000BFAA7 /* SongListTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1800A392206C5755000BFAA7 /* SongListTableViewController.xib */; };
 		1800A398206C580A000BFAA7 /* SongTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1800A396206C580A000BFAA7 /* SongTableViewCell.m */; };
 		1800A399206C580A000BFAA7 /* SongTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1800A397206C580A000BFAA7 /* SongTableViewCell.xib */; };
+		180ADF5421FBDA0F006D585D /* pauseButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 180ADF5321FBDA0F006D585D /* pauseButton.png */; };
+		180ADF5621FBDA1A006D585D /* nextButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 180ADF5521FBDA19006D585D /* nextButton.png */; };
+		180ADF5821FBDA1F006D585D /* playButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 180ADF5721FBDA1F006D585D /* playButton.png */; };
 		1881E45921EF61620081084E /* PlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1881E45721EF61620081084E /* PlayerViewController.m */; };
 		1881E45A21EF61620081084E /* PlayerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1881E45821EF61620081084E /* PlayerViewController.xib */; };
 /* End PBXBuildFile section */
@@ -70,6 +73,9 @@
 		1800A395206C580A000BFAA7 /* SongTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SongTableViewCell.h; sourceTree = "<group>"; };
 		1800A396206C580A000BFAA7 /* SongTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SongTableViewCell.m; sourceTree = "<group>"; };
 		1800A397206C580A000BFAA7 /* SongTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SongTableViewCell.xib; sourceTree = "<group>"; };
+		180ADF5321FBDA0F006D585D /* pauseButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pauseButton.png; sourceTree = "<group>"; };
+		180ADF5521FBDA19006D585D /* nextButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nextButton.png; sourceTree = "<group>"; };
+		180ADF5721FBDA1F006D585D /* playButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = playButton.png; sourceTree = "<group>"; };
 		1881E45621EF61620081084E /* PlayerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlayerViewController.h; sourceTree = "<group>"; };
 		1881E45721EF61620081084E /* PlayerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlayerViewController.m; sourceTree = "<group>"; };
 		1881E45821EF61620081084E /* PlayerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlayerViewController.xib; sourceTree = "<group>"; };
@@ -126,6 +132,9 @@
 			isa = PBXGroup;
 			children = (
 				1800A3512069A23C000BFAA7 /* AppDelegate.h */,
+				180ADF5721FBDA1F006D585D /* playButton.png */,
+				180ADF5521FBDA19006D585D /* nextButton.png */,
+				180ADF5321FBDA0F006D585D /* pauseButton.png */,
 				1800A3522069A23C000BFAA7 /* AppDelegate.m */,
 				1800A3542069A23C000BFAA7 /* ViewController.h */,
 				1800A3552069A23C000BFAA7 /* ViewController.m */,
@@ -286,7 +295,10 @@
 				1800A399206C580A000BFAA7 /* SongTableViewCell.xib in Resources */,
 				1881E45A21EF61620081084E /* PlayerViewController.xib in Resources */,
 				1800A38C206B799D000BFAA7 /* SecondViewController.xib in Resources */,
+				180ADF5821FBDA1F006D585D /* playButton.png in Resources */,
+				180ADF5621FBDA1A006D585D /* nextButton.png in Resources */,
 				1800A394206C5755000BFAA7 /* SongListTableViewController.xib in Resources */,
+				180ADF5421FBDA0F006D585D /* pauseButton.png in Resources */,
 				1800A35E2069A23C000BFAA7 /* LaunchScreen.storyboard in Resources */,
 				1800A35B2069A23C000BFAA7 /* Assets.xcassets in Resources */,
 				1800A3592069A23C000BFAA7 /* Main.storyboard in Resources */,

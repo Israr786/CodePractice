@@ -19,8 +19,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,strong) IBOutlet UIButton *audioStopButton;
 @property (nonatomic,strong) IBOutlet UIButton *audioPlayButton;
 @property (nonatomic,strong) IBOutlet UIButton *audioNextButton;
+@property (nonatomic,strong) IBOutlet UILabel *songTitle;
 @property (nonatomic,strong) NSURL *songUrlPathFromVC;
 @property (nonatomic,assign) NSArray *songUrlPathArray;
+@property (nonatomic,copy) NSMutableArray *songNameList;
+
 
 -(IBAction)playAudio:(id)sender;
 -(IBAction)stopAudio:(id)sender;

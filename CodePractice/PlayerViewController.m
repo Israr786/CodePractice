@@ -78,7 +78,7 @@ static int c = 0;
     
     if ([_songUrlPathArray count]>(_songIndex.row + c) )
     {
-
+        _songTitle.text = _songNameList[_songIndex.row + c];
         _player = [[AVAudioPlayer alloc]initWithContentsOfURL:_songUrlPathArray[_songIndex.row + c] error:nil];
         [_player prepareToPlay];
         c++;

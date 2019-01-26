@@ -22,6 +22,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    _songTitleNameArray = [[NSMutableArray alloc] init];
 //   documentsURL = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory
 //                                                                  inDomains:NSUserDomainMask] lastObject];
 //   contents = [[NSFileManager defaultManager]contentsOfDirectoryAtURL:documentsURL
@@ -69,6 +70,7 @@
     NSString *Cstr = [str stringByReplacingOccurrencesOfString:@"%20" withString:@" "];
     NSLog(@"SongName %@",Cstr);
     cell.songNameLabel.text = Cstr ;
+    [_songTitleNameArray addObject:Cstr];
     return cell;
     
     
@@ -134,6 +136,8 @@
     _playerVC.songUrlPathFromVC = contents[indexPath.row];
     _playerVC.songUrlPathArray = contents;
     _playerVC.songIndex = indexPath;
+    _playerVC.songTitle.text = _songTitleNameArray[indexPath.row];
+    _playerVC.songNameList = _songTitleNameArray;
     [self.navigationController pushViewController:_playerVC animated:YES];
     
     

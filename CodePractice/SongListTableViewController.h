@@ -13,6 +13,7 @@
 @property(nonatomic,strong) IBOutlet UITableView *tableview;
 @property(nonatomic,strong) PlayerViewController *playerVC;
 @property(nonatomic,strong) NSURL *songUrlPath;
+@property(nonatomic,strong) NSMutableArray *songTitleNameArray;
 
 
 @end
