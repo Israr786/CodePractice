@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <AVFoundation/AVFoundation.h>
+#import <MediaPlayer/MediaPlayer.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -23,11 +24,14 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,strong) NSURL *songUrlPathFromVC;
 @property (nonatomic,assign) NSArray *songUrlPathArray;
 @property (nonatomic,copy) NSMutableArray *songNameList;
+@property (nonatomic,strong) MPRemoteCommandCenter *rcc;
+
 
 
 -(IBAction)playAudio:(id)sender;
 -(IBAction)stopAudio:(id)sender;
 -(IBAction)nextAudio:(id)sender;
+-(IBAction)prevAudio:(id)sender;
 -(IBAction)slide:(id)sender;
 
 
