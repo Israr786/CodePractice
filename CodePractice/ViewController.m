@@ -56,11 +56,6 @@
     SongListTableViewController *songListVC = [[SongListTableViewController alloc]initWithNibName:@"SongListTableViewController" bundle:nil];
     songListVC.playerVC = _playerVCMain;
     [self.navigationController pushViewController:songListVC animated:YES];
-    
-    
-  //  [self presentViewController:songListVC animated:YES completion:nil];
-  
-    
 }
 
 

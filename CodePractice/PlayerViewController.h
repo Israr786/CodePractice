@@ -10,11 +10,12 @@
 #import <AVFoundation/AVFoundation.h>
 #import <MediaPlayer/MediaPlayer.h>
 
-NS_ASSUME_NONNULL_BEGIN
-
-@interface PlayerViewController : UIViewController<AVAudioPlayerDelegate>
+@interface PlayerViewController : UIViewController<AVAudioPlayerDelegate> {
+    AVAudioSession *session;
+}
 
 @property (strong, nonatomic) AVAudioPlayer *player;
+@property (strong, nonatomic) MPMusicPlayerController *mediaPlayer;
 @property (assign,nonatomic) NSIndexPath *songIndex;
 @property (nonatomic,strong) IBOutlet UISlider *audioSlider;
 @property (nonatomic,strong) IBOutlet UIButton *audioStopButton;
@@ -28,6 +29,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 
+
 -(IBAction)playAudio:(id)sender;
 -(IBAction)stopAudio:(id)sender;
 -(IBAction)nextAudio:(id)sender;
@@ -36,5 +38,3 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 @end
-
-NS_ASSUME_NONNULL_END

@@ -9,10 +9,7 @@
 #import "PlayerViewController.h"
 static int c = 0;
 
-@interface PlayerViewController () {
-    AVAudioSession *session;
-    
-}
+@interface PlayerViewController ()
 
 @end
 
@@ -31,63 +28,53 @@ static int c = 0;
    
     MPRemoteCommand *pauseCommand = [_rcc pauseCommand];
     [pauseCommand setEnabled:YES];
-    [pauseCommand addTarget:self action:@selector(stopAudio:)];
+    [pauseCommand addTarget:self action:@selector(stop)];
     //
     MPRemoteCommand *playCommand = [_rcc playCommand];
     [playCommand setEnabled:YES];
-    [playCommand addTarget:self action:@selector(playAudio:)];
+    [playCommand addTarget:self action:@selector(play)];
     
     MPRemoteCommand *nextCommand = [_rcc nextTrackCommand];
     [nextCommand setEnabled:YES];
-    [nextCommand addTarget:self action:@selector(nextAudio:)];
+    [nextCommand addTarget:self action:@selector(next)];
     
     MPRemoteCommand *prevCommand = [_rcc previousTrackCommand];
     [prevCommand setEnabled:YES];
-    [prevCommand addTarget:self action:@selector(nextAudio:)];
+    [prevCommand addTarget:self action:@selector(prev)];
     
-    // Doesn’t show unless prevTrack is enabled
-    MPSkipIntervalCommand *skipBackwardCommand = [_rcc skipForwardCommand];
-    [skipBackwardCommand setEnabled:YES];
-    [skipBackwardCommand addTarget:self action:@selector(seekEvent:)];
-    skipBackwardCommand.preferredIntervals = @[@(42)];
-    
-    // Doesn’t show unless nextTrack is enabled
-    MPSkipIntervalCommand *skipForwardCommand = [_rcc skipForwardCommand];
-    [skipForwardCommand setEnabled:YES];
-    [skipForwardCommand addTarget:self action:@selector(seekEvent:)];
-    skipForwardCommand.preferredIntervals = @[@(42)];
+//    // Doesn’t show unless prevTrack is enabled
+//    MPSkipIntervalCommand *skipBackwardCommand = [_rcc skipForwardCommand];
+//    [skipBackwardCommand setEnabled:YES];
+//    [skipBackwardCommand addTarget:self action:@selector(seekEvent:)];
+//    skipBackwardCommand.preferredIntervals = @[@(42)];
+//
+//    // Doesn’t show unless nextTrack is enabled
+//    MPSkipIntervalCommand *skipForwardCommand = [_rcc skipForwardCommand];
+//    [skipForwardCommand setEnabled:YES];
+//    [skipForwardCommand addTarget:self action:@selector(seekEvent:)];
+//    skipForwardCommand.preferredIntervals = @[@(42)];
 }
 
--(void)skipBackwardEvent: (MPSkipIntervalCommandEvent *)skipEvent
-{
-    NSLog(@"Skip backward by %f", skipEvent.interval);
-}
-
--(void)skipForwardEvent: (MPSkipIntervalCommandEvent *)skipEvent
-{
-    NSLog(@"Skip forward by %f", skipEvent.interval);
-}
-
-
--(void) seekEvent: (MPSeekCommandEvent *) seekEvent
-{
-    if (seekEvent.type == MPSeekCommandEventTypeBeginSeeking) {
-        NSLog(@"Begin Seeking");
-    }
-    if (seekEvent.type == MPSeekCommandEventTypeEndSeeking) {
-        NSLog(@"End Seeking");
-    }
-}
-
-
-
-
-
-
-
+//-(void)skipBackwardEvent: (MPSkipIntervalCommandEvent *)skipEvent {
+//    NSLog(@"Skip backward by %f", skipEvent.interval);
+//}
+//
+//-(void)skipForwardEvent: (MPSkipIntervalCommandEvent *)skipEvent {
+//    NSLog(@"Skip forward by %f", skipEvent.interval);
+//}
+//
+//-(void) seekEvent: (MPSeekCommandEvent *) seekEvent {
+//    if (seekEvent.type == MPSkipIntervalCommandEvent) {
+//        NSLog(@"Begin Seeking");
+//    }
+//    if (seekEvent.type == MPSeekCommandEventTypeEndSeeking) {
+//        NSLog(@"End Seeking");
+//    }
+//}
 
 -(void)viewWillAppear:(BOOL)animated {
-    [self playAudio:nil];
+    [self playAudio: nil];
+   
 }
 
 - (IBAction)slide:(id)sender  {
@@ -98,31 +85,79 @@ static int c = 0;
     _audioSlider.value = _player.currentTime;
 }
 
+- (MPRemoteCommandHandlerStatus) play
+{  // if successfully played
+    [self playAudio: nil];
+    return MPRemoteCommandHandlerStatusSuccess;
+}
+
+- (MPRemoteCommandHandlerStatus) stop
+{  // if successfully played
+    [self stopAudio: nil];
+    return MPRemoteCommandHandlerStatusSuccess;
+}
+
+- (MPRemoteCommandHandlerStatus) next
+{  // if successfully played
+    [self nextAudio: nil];
+    return MPRemoteCommandHandlerStatusSuccess;
+}
+
+- (MPRemoteCommandHandlerStatus) prev
+{  // if successfully played
+    [self prevAudio: nil];
+    return MPRemoteCommandHandlerStatusSuccess;
+}
+
+
+
 -(IBAction)playAudio:(id)sender {
     
-//    NSArray *pathArray = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask,YES);
-//    NSString *documentsDirectory = [pathArray objectAtIndex:0];
-//    NSString *soundPath = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%li.mp3",_songIndex]];
-//
-//    NSURL *soundUrl;
-//    if ([[NSFileManager defaultManager] fileExistsAtPath:soundPath])
-//    {
-//        soundUrl = [NSURL fileURLWithPath:soundPath isDirectory:NO];
-//    }
+    NSArray *pathArray = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask,YES);
+    NSString *documentsDirectory = [pathArray objectAtIndex:0];
+    NSString *soundPath = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.mp3",_songIndex]];
+
+    NSURL *soundUrl;
+    if ([[NSFileManager defaultManager] fileExistsAtPath:soundPath])
+    {
+        soundUrl = [NSURL fileURLWithPath:soundPath isDirectory:NO];
+    }
+    
+    
 
     NSLog(@"%@ sound url",_songUrlPathFromVC);
     // plau audio file
-   
- 
+    NSMutableDictionary *songInfo = [[NSMutableDictionary alloc] init];
+    [songInfo setObject:_songTitle.text forKey:MPMediaItemPropertyTitle];
+    [[MPNowPlayingInfoCenter defaultCenter] setNowPlayingInfo:songInfo];
+
+
     _player = [[AVAudioPlayer alloc]initWithContentsOfURL:_songUrlPathFromVC error:nil];
     [_player prepareToPlay];
 
     _audioSlider.maximumValue = [_player duration];
     _audioSlider.value = 0.0;
-    
+
     [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateTime:) userInfo:nil repeats:YES];
     [_player play];
-   
+
+//
+//
+//    MPMusicPlayerController *controller = [MPMusicPlayerController systemMusicPlayer];
+//
+//    MPMediaItemCollection *collection = [[MPMediaItemCollection alloc] initWithItems:pathArray];
+//    MPMediaItem *item = [collection representativeItem];
+////    MPMediaItem *item = [[MPMediaItem alloc]init];
+////    [item assetURL];
+//
+//    [controller setQueueWithItemCollection:collection];
+//    [controller setNowPlayingItem:item];
+//
+//    [controller prepareToPlay];
+//    [controller play];
+//
+//
+//
 }
 
 -(IBAction)stopAudio:(id)sender {
@@ -134,14 +169,22 @@ static int c = 0;
     
     if ([_songUrlPathArray count]>(_songIndex.row + c) )
     {
+      
+        
         _songTitle.text = _songNameList[_songIndex.row + c];
         _player = [[AVAudioPlayer alloc]initWithContentsOfURL:_songUrlPathArray[_songIndex.row + c] error:nil];
         [_player prepareToPlay];
         c++;
         _audioSlider.maximumValue = [_player duration];
         _audioSlider.value = 0.0;
+        
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(audioPlayerDidFinishPlaying:successfully:) name:AVPlayerItemDidPlayToEndTimeNotification object:_player];
         [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateTime:) userInfo:nil repeats:YES];
+        
+        NSMutableDictionary *songInfo = [[NSMutableDictionary alloc] init];
+        [songInfo setObject:_songTitle.text forKey:MPMediaItemPropertyTitle];
+        [[MPNowPlayingInfoCenter defaultCenter] setNowPlayingInfo:songInfo];
+        
         [_player play];
         
     } else {
@@ -163,6 +206,11 @@ static int c = 0;
         _audioSlider.value = 0.0;
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(audioPlayerDidFinishPlaying:successfully:) name:AVPlayerItemDidPlayToEndTimeNotification object:_player];
         [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateTime:) userInfo:nil repeats:YES];
+        
+        NSMutableDictionary *songInfo = [[NSMutableDictionary alloc] init];
+        [songInfo setObject:_songTitle.text forKey:MPMediaItemPropertyTitle];
+        [[MPNowPlayingInfoCenter defaultCenter] setNowPlayingInfo:songInfo];
+        
         [_player play];
         
     } else {
